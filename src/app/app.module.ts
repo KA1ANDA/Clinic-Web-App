@@ -7,7 +7,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 import { UserRegistrPageComponent } from './pages/registration-pages/user-registr-page/user-registr-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 import { DoctorsComponent } from './components/doctors/doctors.component';
@@ -29,39 +29,33 @@ import { FooterComponent } from './components/footer/footer.component';
 
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginPageComponent,
-    UserRegistrPageComponent,
-    LandingPageComponent,
-    DoctorsComponent,
-    CategoriesNavComponent,
-    HeaderComponent,
-    MainComponent,
-    ProfileComponent,
-    CalendarComponent,
-    BookingComponent,
-    BookingPopupComponent,
-    SearchComponent,
-    CategoriesPageComponent,
-    AdminPageComponent,
-    DoctorRegistrPageComponent,
-    FooterComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FontAwesomeModule
-  ],
-  providers: [
-    provideClientHydration(),
-    provideHttpClient(withFetch()),
-    [{provide:HTTP_INTERCEPTORS , useClass:MainInterceptor , multi:true}] 
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        LoginPageComponent,
+        UserRegistrPageComponent,
+        LandingPageComponent,
+        DoctorsComponent,
+        CategoriesNavComponent,
+        HeaderComponent,
+        MainComponent,
+        ProfileComponent,
+        CalendarComponent,
+        BookingComponent,
+        BookingPopupComponent,
+        SearchComponent,
+        CategoriesPageComponent,
+        AdminPageComponent,
+        DoctorRegistrPageComponent,
+        FooterComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        FontAwesomeModule], providers: [
+        provideClientHydration(),
+        provideHttpClient(withFetch()),
+        [{ provide: HTTP_INTERCEPTORS, useClass: MainInterceptor, multi: true }],
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
