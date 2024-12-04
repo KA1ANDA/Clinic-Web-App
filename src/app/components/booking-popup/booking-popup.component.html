@@ -1,0 +1,11 @@
+<div class="bookingPopup">
+    <div>
+      <div *ngIf="!bookingId">გსურთ ვიზიტის დაჯავშნა?</div>
+      <div *ngIf="bookingId">აღწერის რედაქტირება</div>
+      <div>შეგიძლიათ მიუთითოთ თქვენი პრობლემა</div>
+    </div>
+    <input placeholder="აღწერა..." [(ngModel)]="description" />
+    <button *ngIf="!bookingId" (click)="confirmBooking()">დაჯავშნა</button>
+    <button *ngIf="bookingId" (click)="updateDescription()">განახლება</button>
+  </div>
+  

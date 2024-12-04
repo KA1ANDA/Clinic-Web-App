@@ -1,0 +1,29 @@
+<div class="wrap">
+    <div>
+        <div>
+            <img [src]="byteConvert + logedUserData.photo" />
+            <div>{{logedUserData.firstName}}</div>
+        </div>
+
+        <div>
+            <div>პირადი ნომერი:</div>
+            <div>{{logedUserData.personalNumber}}</div>
+        </div>
+
+        <div>
+            <div>Email:</div>
+            <div>{{logedUserData.email}}</div>
+        </div>
+
+        <div>პაროლის შეცვლა</div>
+
+        <div>
+            <div>ჩემი ჯავშანი</div>
+            <div>{{logedUserData.bookingQuantity}}</div>
+        </div>
+
+    </div>
+    
+        <app-calendar [mode]="'profile'"></app-calendar>
+    
+</div>

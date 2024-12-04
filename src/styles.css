@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+    --base-black : rgb(5, 51, 84);
+    --light-gray:rgba(5, 51, 84, 0.3);
+    
+    --lighter-light-blue:rgb(240, 250, 255);
+    --lighter-dark-blue:rgb(236, 242, 248);
+    --light-blue : rgb(24, 164, 225);
+    --dark-blue : rgb(5, 51, 84);
+   
+
+    --dark-red : rgb(255, 44, 82);
+    --light-red:rgb(255, 147, 166);
+
+    --dark-green:rgb(58, 207, 153);
+    --light-green:rgb(218, 250, 238);
+
+
+    --light-yellow:rgb(255, 255, 245);
+
+
+    --text-h1:48px;
+    --text-h2:26px;
+    --text-h3:22px;
+    --text-h4:18px;
+    --text-h5:16px;
+    --text-h6:14px;
+
+
+
+    --base-border-radius : 10px;
+    --big-border-radius : 50px;
+
+    --main-x-padding:150px;
+
+    --base-box-shadow:0px 4px 30px 0px rgba(5, 51, 84, 0.05);
+
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and border are included in element's total width/height */
+    color: var(--base-black) 
+}
+
+body{
+    height: 100%;
+}

@@ -1,0 +1,119 @@
+.wrap{
+    display: flex;
+    gap: 97px;
+    align-items: center;
+    background-color: var(--lighter-dark-blue);
+    padding: 35px var(--main-x-padding);
+}
+
+.info{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone{
+    display: flex;
+    font-size: var(--text-h4);
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.addres{
+    display: flex;
+    font-size: var(--text-h4);
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon{
+    border-radius: 50%;
+    background-color: white;
+    padding: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search{
+    display: flex;
+    gap: 20px;
+}
+
+
+.searchDoctor{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.searchDoctor > input {
+    border-radius: var(--big-border-radius);
+    padding: 17px 30px;
+    width: 480px;
+    height: 50px;
+    box-sizing: border-box;
+    border: 1px solid var( --light-blue);
+}
+
+.searchCategory{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.searchCategory > .categorySelect{
+    border-radius: var(--big-border-radius);
+    padding: 17px 30px;
+    width: 480px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+.activeSearch{
+    position: absolute;
+    background-color: red;
+    top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+
+}
+
+.doctor{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activeCategorySearch{
+    position: absolute;
+    background-color: red;
+    top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.searchButton{
+    background-color: var(--dark-blue);
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+}
+
+

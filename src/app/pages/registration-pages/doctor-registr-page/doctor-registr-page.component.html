@@ -1,0 +1,20 @@
+<form [formGroup]="formControl" (ngSubmit)="addDoctor()">
+    <!-- Form fields for doctor registration -->
+    <input formControlName="firstName" placeholder="First Name" required />
+    <input formControlName="lastName" placeholder="Last Name" required />
+    <input formControlName="email" type="email" placeholder="Email" required />
+    <input formControlName="password" type="password" placeholder="Password" required />
+    <input formControlName="personalNumber" placeholder="Personal Number" required />
+    
+    <select formControlName="specializationId">
+        @for (specialization of docSpecService.Specializations; track specialization.id) {
+            <option [value]="specialization.id" >{{specialization.specializationName}}</option>
+        }
+    </select>
+  
+    <input type="file" (change)="onFileChange($event)" placeholder="Upload CV" />
+    <input type="file" (change)="onPhotoChange($event)" placeholder="Upload Photo" />
+  
+    <button type="submit" [disabled]="formControl.invalid">Register Doctor</button>
+  </form>
+  

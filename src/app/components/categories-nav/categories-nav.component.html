@@ -1,0 +1,13 @@
+<div class="wrap">
+  <div class="title">კატეგორიები</div>
+  <div class="categories">
+    @for (category of categories; track category.id) {
+      <div class="category" (click)="getDoctorsByCategoryId(category.id)">
+        <div class="quantity">( {{category.quantity}} )</div>
+        <div>{{category.specializationName}}</div>    
+      </div>
+    }
+  </div>
+    
+</div>
+

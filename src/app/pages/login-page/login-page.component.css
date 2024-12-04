@@ -1,0 +1,22 @@
+.wrapper{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.555);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.authorization{
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    align-items: center;
+}

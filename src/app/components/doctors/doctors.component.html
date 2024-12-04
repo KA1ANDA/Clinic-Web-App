@@ -1,0 +1,24 @@
+<div class="doctors">
+    @for (doctor of this.docdata.Doctors; track doctor.id) {
+        <div class="doctor">
+            <div>
+                <div>129 371 views</div>
+                <div> pin</div>
+            </div>
+            <div>
+                <img [src]="byteConvert + doctor.photo" />
+            </div>
+
+            <div>
+                <div>{{doctor.firstName}}</div>
+                <div>{{doctor.specializationId}} specialoba</div>
+                <div>{{doctor.rating}}</div>
+            </div>
+
+            <div>
+                <button [routerLink]="['/booking', doctor.id]">მიღებაზე ჩაწერა</button>
+            </div>
+
+        </div>
+    }
+</div>

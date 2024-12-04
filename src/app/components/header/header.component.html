@@ -1,0 +1,33 @@
+<header>
+    <div routerLink="/home" class="logo-wrap">
+        <img src="./../../../assets/images/logo.png"/>
+        <div class="logo-text">კლინიკა</div>
+    </div>
+    <div>
+        <ul>
+            <li>ექიმები</li>
+            <li>კლინიკები</li>
+            <li>ანოტაციები</li>
+            <li>აქციები</li>
+            <li>სერვისები</li>
+            <li>მედიკამენტები</li>
+            <li>კონტაქტი</li>
+        </ul>
+    </div>
+
+    @if(!this.auth.IsLogedIn){
+        <div class="auth">
+            <div routerLink="/login" routerLinkActive="activeAuth" >ავტორიზაცია</div>  
+            /
+            <div routerLink="/registration" routerLinkActive="activeAuth" >რეგისტრაცია</div>
+        </div>
+    }@else {
+        <div [routerLink]="['/profile' , logedUserId]" class="profile">
+            <img [src]="byteConvert + logedUserData.photo" />
+            <div>{{logedUserData.lastName}}</div>
+        </div>
+    }
+    
+    <div class="language">ENG</div>
+    <!-- <div (click)="logOut()">Log Out</div> -->
+</header>

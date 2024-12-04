@@ -1,0 +1,7 @@
+.wrap{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 350px 1210px; 
+    padding: 0 var(--main-x-padding);
+    gap: 60px;
+}

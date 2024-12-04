@@ -1,0 +1,48 @@
+<div class="wrap">
+
+    <div class="info">
+        <div class="phone">
+            <div class="icon"><fa-icon [icon] = "phoneIcon"></fa-icon></div>
+            <div>032 2 100 100</div>
+        </div>
+    
+        <div class="addres">
+            <div class="icon"><fa-icon [icon] = "locationIcon"></fa-icon></div>
+            <div>იაკობ ნიკოლაძე №10</div>
+        </div>
+    </div>
+    
+    <div class="search">
+        <div class="searchDoctor">
+            <input (blur)="isInputActive = false" (focus)="isInputActive = true" [(ngModel)]="searchValue"  (input)="searchDoctors()" placeholder="მოძებნე ექიმი სახელით"/>
+            @if(isInputActive){
+            <div class="activeSearch">
+                @for (doctor of this.docdata.SearchedDoctors; track doctor.id) {
+                    <div class="doctor">
+                        <img [src]="byteConvert + doctor.photo" />
+                        <div>{{doctor.firstName}}</div>
+                        <div>{{doctor.lastName}}</div>
+                    </div>
+                }
+            </div>                  
+            }
+           
+        </div>
+ 
+        <div class="searchCategory">
+            <div class="categorySelect" (click)="toggleCategorySelect()">მოძებნე სპეციალობით ^</div>
+            @if (isCategorySelectActive) {
+                <div class="activeCategorySearch" (click)="this.isCategorySelectActive = false">
+                    @for (category of this.docSpecService.Specializations; track category.id) {
+                        <div (click)="categoryId = category.id">{{category.specializationName}}</div>
+                    }
+                </div>
+            }
+            
+        </div>
+       
+        <div routerLink="/home" class="searchButton" (click)="getDoctorsByCategoryId(categoryId)">
+            <fa-icon [icon] = "searchIcon" ></fa-icon>
+        </div>
+    </div>
+</div>

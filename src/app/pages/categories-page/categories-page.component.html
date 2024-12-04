@@ -1,0 +1,33 @@
+<div>
+    <div>kategoriebi</div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>სახელი</th>
+                <th>კატეგორია</th>
+                <th>ფოტოსურათი</th>
+                <th>რეიტინგი</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (doctor of this.docdata.Doctors; track doctor.id) {
+                <tr>
+                    <td>{{doctor.firstName}}</td>
+                    <td>{{doctor.specializationId}}</td>
+                    <td>
+                        <img [src]="byteConvert + doctor.photo" />
+                    </td>
+                    <td>{{doctor.rating}}</td>
+                    <td>
+                        <div>edit</div>
+                        <div>delete</div>
+                    </td>
+                </tr>
+            }
+           
+        </tbody>
+    </table>
+</div>

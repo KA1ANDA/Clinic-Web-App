@@ -1,0 +1,11 @@
+.wrap{
+    display: grid;
+    grid-template-columns: 2fr 5fr; 
+    background-color: bisque;
+}
+
+img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}

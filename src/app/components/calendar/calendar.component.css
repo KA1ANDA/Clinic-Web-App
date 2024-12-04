@@ -1,0 +1,23 @@
+.green {
+    background-color: green;
+    color: white;
+  }
+  
+  .red {
+    background-color: red;
+   
+    color: white;
+
+  }
+  
+  .booked {
+    font-weight: bold;
+  }
+
+  .booking{
+    position: relative;
+  }
+
+  .weekend{
+    background-color: rgb(241, 241, 94);
+  }

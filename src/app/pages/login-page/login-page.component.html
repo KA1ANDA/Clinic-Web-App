@@ -1,0 +1,33 @@
+<div class="wrapper">
+    <div class="authorization">
+        <div>ავტორიზაცია</div>
+        <form [formGroup]="formControl">
+            @if(!recoverPasswordPage){
+                <div>             
+                    <input formControlName="email" placeholder="ელ.ფოსტა / ტელეფონის ნომერი"/>
+                    <div *ngIf="formControl.get('email')?.errors?.['required'] && formControl.get('email')?.touched">
+                        შეიყვანეთ ემეილი
+                    </div>
+                </div>
+                <div>      
+                    <input type="password" formControlName="password" placeholder="პაროლი"/>
+                    <div *ngIf="formControl.get('password')?.errors?.['required'] && formControl.get('password')?.touched">
+                        შეიყვანეთ პაროლი
+                    </div>
+                </div>
+                <div (click)="toggleRecoverPassword()">
+                    პაროლის აღდგენა
+                </div>
+                <div>{{errorMessage}}</div>
+            }@else{
+                <div>
+                    <div (click)="toggleRecoverPassword()">goback</div>
+                    <input formControlName="email" placeholder="EMAIL"/>
+                </div>
+            }
+           
+            <button (click)="!recoverPasswordPage ? authenticate() : recoverPassword()">შესვლა</button>
+        </form>
+    </div>
+    
+</div>

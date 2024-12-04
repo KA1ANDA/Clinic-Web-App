@@ -1,0 +1,98 @@
+<div>
+    <div>
+        <div>წელი:{{currentYear}}</div>
+        <div>
+            <div (click)="getPrevMonth()">prev</div>
+            თვე:{{currentMonth}}
+            <div (click)="getNextMonth()">next</div>
+        </div>
+    </div>
+    
+    
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <div (click)="getPrevWeek()">prev</div>
+                  
+                    <div (click)="getNextWeek()">next</div>
+                </th>
+                @for (day of getCurrentWeek(); track $index) {
+                    <th>{{day.day}} ,{{day.weekday}} </th>
+                }
+           
+            </tr>
+        </thead>
+        <tbody>
+            @for (time of this.booking.TimeSlots; track time.id) {
+                <tr>
+                    <td>{{extractTimeFromSlot(time.startTime)}} - {{extractTimeFromSlot(time.endTime)}}</td>
+                    @for (day of getCurrentWeek(); track $index) {
+                        <td [class.weekend]="day.weekday === 'Sunday' || 
+                            day.weekday === 'Saturday' "  
+                            [class.booked]="isBooked(time.id, day).isBooked" >
+                    
+                            @if (isBooked(time.id, day).isBooked && isBooked(time.id, day).patientId) {
+                                <div [ngClass] ="'green'">
+                                    <div>ჩემი ჯავშანი</div>
+                                    @if (isDeleteActive ) {
+                                        <div (click)="deleteBooking(isBooked(time.id, day).bookingId)">წაშლა</div>
+                                    }@else if (isEditActive) {
+                                        <div (click)="toggleActiveBookingCell(time.id, day)" >ედითი</div>
+                                        @if (activeBookingCell.timeId === time.id && isSameDay(activeBookingCell.day, day)) {
+                                            <app-booking-popup
+       
+                                            [timeId]="time.id"
+                                            [day]="day"
+                                            [description]="description"
+                                            [bookingId]="isBooked(time.id, day).bookingId"
+                                            (descriptionUpdated)="editBookingDescription($event.bookingId, $event.description)">
+                                        </app-booking-popup>
+                                        }
+                                        
+                                    }   
+                                </div>
+                            }@else if (isBooked(time.id, day).isBooked && !isBooked(time.id, day).patientId) {
+                                @if (this.auth.LogedUserData.role === 2) {
+                                    <div [ngClass] ="'green'">
+                                         <div>დაჯავშნილი</div>
+                                         @if (isDeleteActive ) {
+                                            <div (click)="deleteBooking(isBooked(time.id, day).bookingId)">წაშლა</div>
+                                         }
+                                        </div>
+                                }@else{
+                                    <div [ngClass] ="'red'"> დაჯავშნილი</div>
+                                }                            
+                            }@else {
+                                <div class="booking">
+                                    @if(mode === 'booking'){
+                                        <div (click)="toggleActiveBookingCell(time.id, day)">+ ჯავშანი</div>}
+                                    <!-- }@else if (mode === 'profile') {
+                                        
+                                    } -->
+                                    
+                                    @if (activeBookingCell.timeId === time.id && isSameDay(activeBookingCell.day, day)) {
+                                
+                                        <app-booking-popup
+                                            [timeId]="time.id"
+                                            [day]="day"
+                                            [description]="description"
+                                            (bookingConfirmed)="setBooking($event.timeId, $event.day)">
+                                        </app-booking-popup>
+                                    }
+                                    
+                                </div>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <div (click)="toggleEdit()">რედაქტირება</div>
+        <div (click)="toggleDelete()">წაშლა</div>
+    </div>
+   
+</div>
