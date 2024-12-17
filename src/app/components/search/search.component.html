@@ -2,12 +2,14 @@
 
     <div class="info">
         <div class="phone">
-            <div class="icon"><fa-icon [icon] = "phoneIcon"></fa-icon></div>
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="#18a4e1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>            </div>
             <div>032 2 100 100</div>
         </div>
     
         <div class="addres">
-            <div class="icon"><fa-icon [icon] = "locationIcon"></fa-icon></div>
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"><rect width="16" height="16" fill="none"/><path fill="#18a4e1" fill-rule="evenodd" d="M12.5 6a4.47 4.47 0 0 1-.883 2.677L8 13.5L4.383 8.677A4.5 4.5 0 1 1 12.5 6M14 6c0 1.34-.439 2.576-1.18 3.574L8.937 14.75L8 16l-.938-1.25L3.18 9.574A6 6 0 1 1 14 6M8 8a2 2 0 1 0 0-4a2 2 0 0 0 0 4" clip-rule="evenodd"/></svg>            </div>
             <div>იაკობ ნიკოლაძე №10</div>
         </div>
     </div>
@@ -16,12 +18,18 @@
         <div class="searchDoctor">
             <input (blur)="isInputActive = false" (focus)="isInputActive = true" [(ngModel)]="searchValue"  (input)="searchDoctors()" placeholder="მოძებნე ექიმი სახელით"/>
             @if(isInputActive){
-            <div class="activeSearch">
+            <div class="dropDown">
                 @for (doctor of this.docdata.SearchedDoctors; track doctor.id) {
                     <div class="doctor">
-                        <img [src]="byteConvert + doctor.photo" />
-                        <div>{{doctor.firstName}}</div>
-                        <div>{{doctor.lastName}}</div>
+                        <img  [src]="doctor.photo ? (byteConvert + doctor.photo) : defaultPhoto" />
+                        <div class="mini-info-wrap">
+                            <div>
+                                <div>{{doctor.firstName}}</div>
+                                <div>{{doctor.lastName}}</div>
+                            </div>
+                            <div>{{doctor.specializationId}}</div>
+                        </div>
+                       
                     </div>
                 }
             </div>                  
@@ -30,11 +38,16 @@
         </div>
  
         <div class="searchCategory">
-            <div class="categorySelect" (click)="toggleCategorySelect()">მოძებნე სპეციალობით ^</div>
+            <div class="categorySelect" (click)="toggleCategorySelect()">
+                <div>მოძებნე სპეციალობით</div>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="currentColor" d="M8.037 11.166L14.5 22.36c.825 1.43 2.175 1.43 3 0l6.463-11.195c.826-1.43.15-2.598-1.5-2.598H9.537c-1.65 0-2.326 1.17-1.5 2.6z"/></svg>
+                
+            </div>
             @if (isCategorySelectActive) {
-                <div class="activeCategorySearch" (click)="this.isCategorySelectActive = false">
+                <div class="dropDown" (click)="this.isCategorySelectActive = false">
                     @for (category of this.docSpecService.Specializations; track category.id) {
-                        <div (click)="categoryId = category.id">{{category.specializationName}}</div>
+                        <div class="category" (click)="categoryId = category.id">{{category.specializationName}}</div>
                     }
                 </div>
             }
@@ -42,7 +55,7 @@
         </div>
        
         <div routerLink="/home" class="searchButton" (click)="getDoctorsByCategoryId(categoryId)">
-            <fa-icon [icon] = "searchIcon" ></fa-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21l-4.343-4.343m0 0A8 8 0 1 0 5.343 5.343a8 8 0 0 0 11.314 11.314"/></svg> 
         </div>
     </div>
 </div>

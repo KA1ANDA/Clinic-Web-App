@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { TimeSlot } from '../models/timeSlot.model';
 import { Booking } from '../models/booking.model';
 
@@ -9,6 +9,13 @@ import { Booking } from '../models/booking.model';
 })
 export class BookingService {
 
+  private isDeleteActiveSource = new BehaviorSubject<boolean>(false);
+  private isEditActiveSource = new BehaviorSubject<boolean>(false);
+
+  isDeleteActive$ = this.isDeleteActiveSource.asObservable();
+  isEditActive$ = this.isEditActiveSource.asObservable();
+
+  
   timeSlots : TimeSlot[]= []
   bookings : Booking[] = []
 
@@ -16,9 +23,23 @@ export class BookingService {
   constructor(private http : HttpClient) { }
 
 
+  toggleDelete(): void {
+    this.isDeleteActiveSource.next(!this.isDeleteActiveSource.value);
+    this.isEditActiveSource.next(false); 
+  }
+
+  toggleEdit(): void {
+    this.isEditActiveSource.next(!this.isEditActiveSource.value);
+    this.isDeleteActiveSource.next(false);  
+  }
+
 
   addBooking(booking : Booking): Observable<any>{
     return this.http.post<any>(`${this.baseUrl}Booking/add_booking` , booking)
+  }
+
+  updateBooking(bookng : Booking):Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}Booking/update_booking`, bookng)
   }
 
   getDoctorBookings(booking : Booking):Observable<any>{

@@ -1,24 +1,39 @@
 <div class="doctors">
-    @for (doctor of this.docdata.Doctors; track doctor.id) {
+    @for (doctor of this.docdata.VisibleDoctors; track doctor.id) {
         <div class="doctor">
-            <div>
-                <div>129 371 views</div>
-                <div> pin</div>
+            <div class="doctor-top">
+                <div class="views">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                    <div>129 371 </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#18a4e1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 4.5l-4 4L7 10l-1.5 1.5l7 7L14 17l1.5-4l4-4M9 15l-4.5 4.5M14.5 4L20 9.5"/></svg>
             </div>
             <div>
-                <img [src]="byteConvert + doctor.photo" />
+                <img  [src]="doctor.photo ? (byteConvert + doctor.photo) : defaultPhoto" />
             </div>
 
-            <div>
-                <div>{{doctor.firstName}}</div>
-                <div>{{doctor.specializationId}} specialoba</div>
+            <div class="doctor-info">
+                <div class="name">{{doctor.firstName}}</div>
+                <div class="specialization">{{getSpecialization(doctor.specializationId)}}</div>
                 <div>{{doctor.rating}}</div>
             </div>
 
-            <div>
-                <button [routerLink]="['/booking', doctor.id]">მიღებაზე ჩაწერა</button>
-            </div>
+            @if (this.auth.LogedUserData && this.auth.LogedUserData.role == 0) {
+                <button [routerLink]="['/adminPage/doctors', doctor.id]">
+                    <div class="button-title">რედაქტირება</div>
+                    <svg class="arrow custom-stroke" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none"  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m10 17l5-5l-5-5"/></svg>
+                </button>
+        
+            }@else {
+                <button [routerLink]="['/booking', doctor.id]">       
+                    <div class="button-title">მიღებაზე ჩაწერა</div>
+                    <svg class="arrow custom-stroke" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none"  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m10 17l5-5l-5-5"/></svg>
+                </button>
+            }
+            
+           
 
         </div>
     }
+    <div class="load-more" (click)="loadMore()">მეტის ნახვა</div>
 </div>

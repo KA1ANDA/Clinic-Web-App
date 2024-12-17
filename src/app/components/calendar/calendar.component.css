@@ -1,23 +1,281 @@
+.wrap{
+  display: flex;
+  flex-direction: column;
+  gap:30px
+}
+
+
+
+.wrap-flex{
+  display: flex;
+  gap:50px
+}
+
+.year-month-wrap{
+  display: flex;
+  gap: 43px;
+  align-items: center;
+  padding: 0 0 37px 47px;
+}
+
+.year{
+  font-family: firago-bold;
+  font-size: var(--text-h4);
+}
+
+.month-wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+}
+
+.month{
+  width: 140px;
+  height: 35px;
+  border-radius: var(--big-border-radius);
+  border: 1px solid var(--light-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light-blue);
+  font-family:firago-bold ;
+}
+
+.month-nav{
+  box-shadow: var(--base-box-shadow);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer
+}
+
+.month-nav-prev{
+  rotate: 180deg;
+}
+
+
+
+.week-nav{
+  border-radius: 50%;
+  width: 21px;
+  height: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.week-nav :hover{
+  border-radius: 50%;
+  width: 21px;
+  height: 21px;
+  background-color: white;
+}
+
+.week-nav-prev{
+  rotate: 180deg;
+}
+
+/* Add border-radius to the top-left and top-right corners in the header */
+thead th:first-child {
+  border-top-left-radius: var(--base-border-radius);
+}
+
+thead th{
+  background-color: var(--lighter-dark-blue);
+}
+thead th:last-child {
+  border-top-right-radius: var(--base-border-radius);
+}
+
+/* Add border-radius to the bottom-left and bottom-right corners in the last row */
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: var(--base-border-radius);
+}
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: var(--base-border-radius);
+}
+
+table{
+  border-collapse: collapse; 
+  border-spacing: 0; 
+  border-radius: var(--base-border-radius);
+  box-shadow: var(--base-box-shadow);
+}
+
+tbody > th, td {
+  border: 1px solid var(--lighter-dark-blue); 
+  padding: 0; 
+  text-align: left;
+}
+
+
+thead .nav-arrows{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+
+
+thead th {
+  height: 48px; 
+  font-size: var(--text-h6);
+}
+
+tbody td {
+  height: 60px; 
+}
+
+table th:first-child, table td:first-child {
+  width: 120px; 
+  font-size: var(--text-h5);
+  text-align: center;
+}
+
+table th:not(:first-child), table td:not(:first-child) {
+  width: 100px; 
+  text-align: center;
+
+}
+
+
+/* remove borders */
+
+tr:first-child th {
+  border-top: none; 
+}
+tr:last-child td {
+  border-bottom: none;
+}
+td:first-child, th:first-child {
+  border-left: none;
+}
+td:last-child, th:last-child {
+  border-right: none;
+}
+
+/* remove borders */
+
+
+.week-day{
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.week-day > .day{
+  color: var(--light-blue);
+}
+
+.plus-icon{
+  color: var(--dark-green);
+}
+
 .green {
-    background-color: green;
-    color: white;
-  }
-  
-  .red {
-    background-color: red;
+  background-color: var(--light-green);
+  height: 100%;
+  border-radius:var(--small-border-radius) ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
+.green > .for-doctor-title{
+  color: var(--dark-green);
+  font-size: var(--text-h7);
+}
+
+.green > .title {
+  color: var(--dark-green);
+  font-size: var(--text-h5);
+}
    
-    color: white;
-
-  }
+.red {
+  background-color: var(--light-red);
+  height: 100%;
+  border-radius:var(--small-border-radius) ;
+}
   
-  .booked {
-    font-weight: bold;
-  }
 
-  .booking{
-    position: relative;
-  }
+.booking{
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--base-border-radius);
 
-  .weekend{
-    background-color: rgb(241, 241, 94);
-  }
+    
+}
+
+.bookingPopup{
+  position: absolute;
+  left: -350px;
+  top: 30px;
+
+}
+
+.weekend{
+  background-color: var(--light-yellow);
+}
+
+.day-off{
+  background-color: var(--lighter-red);
+} 
+
+ 
+.delete{
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+}
+
+.edit{
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+
+
+
+
+
+.re-book{
+  color: rgba(5, 51, 84, 0.3);
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.day-off-set-button{
+  cursor: pointer;
+}
+
+

@@ -1,20 +1,103 @@
-<form [formGroup]="formControl" (ngSubmit)="addDoctor()">
-    <!-- Form fields for doctor registration -->
-    <input formControlName="firstName" placeholder="First Name" required />
-    <input formControlName="lastName" placeholder="Last Name" required />
-    <input formControlName="email" type="email" placeholder="Email" required />
-    <input formControlName="password" type="password" placeholder="Password" required />
-    <input formControlName="personalNumber" placeholder="Personal Number" required />
+<div class="wrap">
+    <div class="title">რეგისტრაცია</div>
+    <form [formGroup]="formControl">
+        <!-- First Name -->
+        <div>
+            <label>სახელი</label>
+            <input type="text" placeholder="( მინიმუმ 5 სიმბოლო )" formControlName="firstName" required />
+            <div class="input-error" *ngIf="formControl.get('firstName')?.errors?.['required'] && formControl.get('firstName')?.touched">
+                *სახელი აუცილებელია
+            </div>
+            <div class="input-error" *ngIf="formControl.get('firstName')?.errors?.['minlength'] && formControl.get('firstName')?.touched">
+                *სახელი უნდა შეიცავდეს მინიმუმ 5 სიმბოლოს
+            </div>
+        </div>
+
+        <!-- Last Name -->
+        <div>
+            <label>გვარი</label>
+            <input type="text" formControlName="lastName" required />
+            <div class="input-error" *ngIf="formControl.get('lastName')?.errors?.['required'] && formControl.get('lastName')?.touched">
+                *გვარი აუცილებელია
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div>
+            <label>Email</label>
+            <input type="email" placeholder="Email" formControlName="email" required />
+            <div class="input-error" *ngIf="formControl.get('email')?.errors?.['required'] && formControl.get('email')?.touched">
+                *Email-ი აუცილებელია
+            </div>
+            <div class="input-error" *ngIf="formControl.get('email')?.errors?.['email'] && formControl.get('email')?.touched">
+                *შეიყვანეთ სწორი Email-ი 
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div>
+            <label>პაროლი</label>
+            <input type="password" placeholder="( მინიმუმ 8 სიმბოლო )" formControlName="password" required />
+            <div class="input-error" *ngIf="formControl.get('password')?.errors?.['required'] && formControl.get('password')?.touched">
+                *პაროლი აუცილებელია
+            </div>
+            <div class="input-error" *ngIf="formControl.get('password')?.errors?.['minlength'] && formControl.get('password')?.touched">
+                *პაროლი უნდა შეიცავდეს მინიმუმ 8 სიმბოლოს
+            </div>
+        </div>
+
+        <!-- Personal Number -->
+        <div>
+            <label>პირადი ნომერი</label>
+            <input type="text" placeholder="00000000000" formControlName="personalNumber" maxlength="11" required />
+            <div class="input-error" *ngIf="formControl.get('personalNumber')?.errors?.['required'] && formControl.get('personalNumber')?.touched">
+                *პირადი ნომერი აუცილებელია
+            </div>
+            <div class="input-error" *ngIf="formControl.get('personalNumber')?.errors?.['minlength'] && formControl.get('personalNumber')?.touched">
+                *პირადი ნომერი უნდა შეიცავდეს 11 სიმბოლოს
+            </div>
+        </div>
+
+        <!-- Specialization -->
+        <div>
+            <label>სპეციალობა</label>
+            <select formControlName="specializationId" required>
+                <option value="" disabled selected>ანესთეზიოლოგი / თერაპევტი ან სხვა...</option>
+                <option *ngFor="let specialization of docSpecService.Specializations" [value]="specialization.id">
+                    {{ specialization.specializationName }}
+                </option>
+            </select>
+            <div class="input-error" *ngIf="formControl.get('specializationId')?.errors?.['required'] && formControl.get('specializationId')?.touched">
+                *სპეციალობა აუცილებელია
+            </div>
+        </div>
+
+        <!-- Photo Upload -->
+        
+<div>
+    <label>ფოტოსურათი</label>
+    <div [ngClass]="{ 'file-selected': isPhotoSelected }" class="file-wrap">
+        <label for="photo" class="upload-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm1-4h12l-3.75-5l-3 4L9 13z"/></svg>                </label>
+        <input id="photo" type="file" (change)="onPhotoChange($event)" class="hidden-input" />
+    </div>
     
-    <select formControlName="specializationId">
-        @for (specialization of docSpecService.Specializations; track specialization.id) {
-            <option [value]="specialization.id" >{{specialization.specializationName}}</option>
-        }
-    </select>
-  
-    <input type="file" (change)="onFileChange($event)" placeholder="Upload CV" />
-    <input type="file" (change)="onPhotoChange($event)" placeholder="Upload Photo" />
-  
-    <button type="submit" [disabled]="formControl.invalid">Register Doctor</button>
-  </form>
-  
+</div>
+
+<!-- Custom area for CV upload -->
+<div >
+    <label>CV</label>
+    <div [ngClass]="{ 'file-selected': isFileSelected }" class="file-wrap">
+        <label for="cv" class="upload-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" fill="none"/><path fill="currentColor" d="M16.839 15h-2.865v-3.046a.7.7 0 0 0-.193-.498a.62.62 0 0 0-.468-.205a.62.62 0 0 0-.469.205a.7.7 0 0 0-.193.498v3.047H9.933a.62.62 0 0 0-.468.205a.7.7 0 0 0-.193.498a.7.7 0 0 0 .193.498a.62.62 0 0 0 .468.205h2.718v2.89a.7.7 0 0 0 .193.498a.62.62 0 0 0 .469.205q.275 0 .468-.205a.7.7 0 0 0 .193-.498v-2.89h2.865q.276 0 .468-.205a.7.7 0 0 0 .193-.498a.7.7 0 0 0-.193-.498a.62.62 0 0 0-.468-.205m.516-9.973L13.33.481l-.44-.479H3.78c-.17 0-.36-.01-.526.017A.83.83 0 0 0 2.742.3c-.281.318-.24.717-.24 1.108v17.185c0 .391-.045.814.24 1.11s.476.296.843.296H8.61q.276 0 .469-.205a.7.7 0 0 0 .193-.498a.7.7 0 0 0-.193-.498a.62.62 0 0 0-.469-.205H3.845L3.839 1.364h7.275v3.593c0 .391.152.743.391.996s.57.41.937.41h3.735v4.185a.7.7 0 0 0 .193.498a.62.62 0 0 0 .468.205q.276 0 .469-.205a.7.7 0 0 0 .192-.498V5.475l.001-.279zm-4.837-.172q-.062-.08-.075-.28V1.52l3.059 3.437H12.76q-.18-.024-.242-.103"/></svg>                </label>
+        <input id="cv" type="file" (change)="onFileChange($event)" class="hidden-input" />
+    </div>
+
+</div>
+    </form>
+
+    <div class="registration-button-wrap">
+        <button class="registration-button" (click)="addDoctor()" [disabled]="formControl.invalid">რეგისტრაცია</button>
+    </div>
+</div>
+

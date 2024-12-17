@@ -1,14 +1,64 @@
+.wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 67px;
+}
+
 .doctorInfo{
     display: flex;
+    border-radius: var(--base-border-radius);
+    padding: 50px;
+    height: 250px;
     justify-content: space-between;
+    box-shadow: var(--base-box-shadow);
 }
 
 .doctor{
     display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
 }
 
-img{
+.doctor img{
+    width: 157px;
+    height: 157px;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+}
+
+.doctor .name {
+    font-size: var(--text-h3);
+}
+
+.doctor .specialization {
+    font-size: var(--text-h5);
+    color: rgba(5, 51, 84, 0.3);
+}
+
+.doctor .info {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.divider{
+    width: 1px;
+    background-color: var(--lighter-dark-blue);
+   
+}
+
+.date{
+    color: var(--light-blue);
+}
+
+
+.experiences{
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    font-size: var(--text-h4);
+}
+.experience{
+    display: flex;
+    font-size: var(--text-h4);
 }

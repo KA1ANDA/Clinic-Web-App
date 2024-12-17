@@ -1,0 +1,138 @@
+.wrap{
+    width: 1530px;
+    margin: 60px 150px 125px 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+form{
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    gap: 40px;
+}
+
+.title{
+    color: var(--light-blue);
+    font-family: firago-bold;
+    font-size: var(--text-h2);
+
+}
+
+input {
+    border-radius: var(--big-border-radius);
+    padding: 17px 20px;
+    width: 480px; 
+    height: 50px;
+    box-sizing: border-box;
+    border: 1px solid var(--lighter-dark-blue);
+    margin-top: 5px;
+}
+
+input:focus {
+    border: 1px solid var(--light-blue);
+    outline: none;
+}
+input::placeholder{
+    color: rgb(5, 51, 84, 0.3);
+}
+
+
+label{
+    font-size: var(--text-h5);
+    margin-left:20px;
+
+}
+
+
+.registration-button{
+    background-color: var(--dark-blue);
+    border-radius: var(--big-border-radius);
+    width: 180px;
+    height: 50px;
+    color: white;
+    font-size: var(--text-h5);
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.registration-button-wrap{
+    position: relative;
+}
+
+
+.input-error{
+    color: var(--dark-red);
+    font-size: var(--text-h6);
+    margin-left: 20px;
+    margin-top: 10px;
+    position: absolute;
+}
+
+select {
+    border-radius: var(--big-border-radius);
+    padding: 10px; 
+    border: 1px solid var(--lighter-dark-blue);
+    background-color: white; 
+    font-size: var(--text-h5); 
+    width: 100%; 
+    appearance: none;
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    position: relative;
+    padding-left: 20px;
+}
+
+select:focus {
+    border: 1px solid var(--light-blue);
+    outline: none; 
+}
+
+
+select::-ms-expand {
+    display: none; 
+}
+
+
+
+select option:checked {
+    background-color: var(--light-blue); 
+    color: white; 
+}
+
+
+.hidden-input {
+    display: none; /* Hide the default file input */
+}
+
+
+.upload-box {
+    border-radius: var(--big-border-radius);
+    display: flex;
+    align-items: center;
+    width: 480px; 
+    height: 50px;
+    box-sizing: border-box;
+    border: 1px solid var(--lighter-dark-blue);
+    width: 100%;
+    position: relative;
+    margin-top: 5px;
+    margin-left: 0;
+    
+}
+
+
+.upload-box > svg{
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.file-selected {
+    background-color:var(--lighter-dark-blue); /* Light blue background for selected files */
+    border-radius: var(--big-border-radius);
+    
+
+}
+

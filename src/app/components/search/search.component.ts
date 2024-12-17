@@ -2,23 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { DoctorsService } from '../../services/doctors.service';
 import { DoctorSpecializationsService } from '../../services/doctor-specializations.service';
 import { Specialization } from '../../models/specialization.model';
-import {faPhone} from '@fortawesome/free-solid-svg-icons' 
-import {faLocationDot} from '@fortawesome/free-solid-svg-icons' 
-import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons' 
+
 
 
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrl: './search.component.css'
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrl: './search.component.css',
+    standalone: false
 })
 export class SearchComponent implements OnInit {
 
-  phoneIcon = faPhone
-  locationIcon = faLocationDot
-  searchIcon = faMagnifyingGlass
-
+  defaultPhoto: string = 'assets/images/default.png';
   isInputActive : boolean = false
   isCategorySelectActive : boolean = false
   categoryId? : number 
@@ -49,7 +45,7 @@ export class SearchComponent implements OnInit {
 
 
     this.docdata.getDoctorsByCategoryId(specialization).subscribe(res => {
-      this.docdata.Doctors = res
+      this.docdata.VisibleDoctors = res
 
     })
   }

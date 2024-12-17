@@ -10,6 +10,8 @@ import { User } from '../models/user.model';
 })
 export class AuthenticationService {
 
+  authorization:boolean = false
+  
   logedUserData : User = new User()
   isLogedIn : boolean = localStorage.getItem("Token") ? true : false
 

@@ -4,12 +4,14 @@ import { Specialization } from '../../models/specialization.model';
 import { DoctorsService } from '../../services/doctors.service';
 
 @Component({
-  selector: 'app-categories-nav',
-  templateUrl: './categories-nav.component.html',
-  styleUrl: './categories-nav.component.css'
+    selector: 'app-categories-nav',
+    templateUrl: './categories-nav.component.html',
+    styleUrl: './categories-nav.component.css',
+    standalone: false
 })
 export class CategoriesNavComponent implements OnInit {
 
+  activeCategory? : number 
   categories : Specialization[] = []
   constructor(public docSpecService : DoctorSpecializationsService, public doctors:DoctorsService){}
 
@@ -24,12 +26,13 @@ export class CategoriesNavComponent implements OnInit {
 
 
   getDoctorsByCategoryId(id? : number) : void{
+    this.activeCategory = id
     const specialization : Specialization = new Specialization()
     specialization.id = id
 
 
     this.doctors.getDoctorsByCategoryId(specialization).subscribe(res => {
-      this.doctors.Doctors = res
+      this.doctors.VisibleDoctors = res
       console.log(this.doctors.Doctors , 'esaa mtavari')
     })
   }

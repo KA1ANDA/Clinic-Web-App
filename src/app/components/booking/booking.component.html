@@ -1,22 +1,25 @@
-<div>
+<div class="wrap">
     @if (this.docdata.SelectedDoctor) {
         <div class="doctorInfo">
             <div class="doctor">
                 <img [src]="byteConvert + this.docdata.SelectedDoctor.photo" />
-                <div>
-                    <div>{{this.docdata.SelectedDoctor.firstName}}</div>
-                    <div>{{this.docdata.SelectedDoctor.specializationId}}</div>
+                <div class="info">
+                    <div class="name">{{this.docdata.SelectedDoctor.firstName}}</div>
+                    <div class="specialization">{{getSpecialization(this.docdata.SelectedDoctor.specializationId)}}</div>
                     <div>{{this.docdata.SelectedDoctor.rating}}</div>
                 </div>
             </div>
-            <div class="experience">
+            <div class="divider">
+
+            </div>
+            <div class="experiences">
                 @for (experience of this.docdata.SelectedDoctor.experience; track $index) {
-                    <div>
-                        <div>
-                            <div>{{experience.startDate}}</div> - <div>{{experience.endDate}}</div>
-                            <div>{{experience.organization}} : {{experience.position}}</div>
-                        </div>
+                    
+                    <div class="experience">
+                        <div class="date">{{experience.startDate}} - {{experience.endDate}} ,</div> 
+                        <div>{{experience.organization}} : {{experience.position}}</div>
                     </div>
+                    
                 }
             </div>
         </div>

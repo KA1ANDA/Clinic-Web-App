@@ -1,0 +1,46 @@
+<div class="wrap">
+    @if (this.docdata.SelectedDoctor) {
+        <div class="profile-wrap">
+            <div class="profile">
+                <div class="main-info">
+                    <img [src]="byteConvert + this.docdata.SelectedDoctor.photo" />
+                    <div>{{this.docdata.SelectedDoctor.firstName}}</div>
+                    <div>ექიმი</div>
+                    <div>სპეციალობა</div>
+                    <div>{{this.docdata.SelectedDoctor.rating}}</div>
+                </div>
+                <div class="other-info">
+                    <div>
+                        <div>პირადი ნომერი :</div>
+                        <div>{{this.docdata.SelectedDoctor.personalNumber}}</div>
+                    </div>
+        
+                    <div>
+                        <div>Email :</div>
+                        <div>{{this.docdata.SelectedDoctor.email}}</div>
+                    </div>
+        
+        
+                    <div>
+                        <div>დაჯავშნილია :</div>
+                        <div>( 0 )</div>
+                    </div>
+        
+                    <div>
+                        <div>პაროლის შეცვლა</div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="add-button">+ დამატება</div>
+                <app-action-buttons
+                (editClicked)="toggleEdit()" 
+                (deleteClicked)="toggleDelete()">
+              ></app-action-buttons>
+            </div>
+        </div>
+        <app-calendar></app-calendar>
+    }
+   
+</div>
+

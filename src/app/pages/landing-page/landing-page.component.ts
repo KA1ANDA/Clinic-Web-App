@@ -6,9 +6,10 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 @Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.css'
+    selector: 'app-landing-page',
+    templateUrl: './landing-page.component.html',
+    styleUrl: './landing-page.component.css',
+    standalone: false
 })
 export class LandingPageComponent {
 

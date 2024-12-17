@@ -1,0 +1,51 @@
+.edit-button{
+    width: 230px;
+    height: 50px;
+    background-color: var(--lighter-dark-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    border-radius:var(--big-border-radius);
+    cursor: pointer;
+  
+}
+  
+  
+.delete-button{
+    width: 170px;
+    height: 50px;
+    background-color: var(--light-red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    border-radius:var(--big-border-radius);
+    cursor: pointer;
+}
+
+.button-wrap-flex{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+  
+.button-wrap{
+    display: flex;
+    gap: 30px;
+}
+  
+
+
+.delete-button div{
+    color: white;
+    font-family: var(--bold-text);
+  
+}
+  
+  
+.edit-button div{
+    color: var(--light-blue);
+    font-family: var(--bold-text);
+  
+}

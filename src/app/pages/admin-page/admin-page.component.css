@@ -1,0 +1,19 @@
+.wrap{
+    padding: 0 var(--main-x-padding);
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* .selected-doctor-wrap{
+    display: grid;
+    grid-template-columns: 750px 830px;
+    gap: 40px;
+
+} */
+
+.main-wrap{
+   display: flex;
+   justify-content: space-between;
+
+}

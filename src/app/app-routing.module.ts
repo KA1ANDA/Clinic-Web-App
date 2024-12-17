@@ -11,14 +11,21 @@ import { BookingComponent } from './components/booking/booking.component';
 import { CategoriesPageComponent } from './pages/categories-page/categories-page.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { DoctorRegistrPageComponent } from './pages/registration-pages/doctor-registr-page/doctor-registr-page.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 
 const routes: Routes = [
-  {path:"login" , component:LoginPageComponent},
+  // {path:"login" , component:LoginPageComponent},
   {path:"registration" , component:UserRegistrPageComponent},
   {path:"doctorRegistration" , component:DoctorRegistrPageComponent},
   {path:"categories" , component:CategoriesPageComponent},
-  {path:"adminPage" , component:AdminPageComponent},
+  {path:"adminPage" , component:AdminPageComponent , children:[
+    {path:"doctors" , component:DoctorsComponent},
+    {path:"doctors/:id" , component:UserEditComponent},
+
+  ]},
+
+
   {
     path:"",component:LandingPageComponent , children:[{
       path:"",component:MainComponent , children:[

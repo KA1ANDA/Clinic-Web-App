@@ -1,26 +1,30 @@
 <div class="wrap">
-    <div>
-        <div>
-            <img [src]="byteConvert + logedUserData.photo" />
-            <div>{{logedUserData.firstName}}</div>
+    <div class="profile">
+
+        <div class="main">
+            <img [src]="logedUserData.photo ? (byteConvert + logedUserData.photo) : defaultPhoto" />
+            <div class="name">{{logedUserData.firstName}}</div>
         </div>
 
-        <div>
-            <div>პირადი ნომერი:</div>
-            <div>{{logedUserData.personalNumber}}</div>
+        <div class="common-info">
+            <div>
+                <div>პირადი ნომერი:</div>
+                <div class="lighter-text">{{logedUserData.personalNumber}}</div>
+            </div>
+    
+            <div>
+                <div>Email:</div>
+                <div class="lighter-text">{{logedUserData.email}}</div>
+            </div>
+    
+            <div>პაროლის შეცვლა</div>
+    
+            <div>
+                <div>ჩემი ჯავშანი</div>
+                <div class="lighter-text">{{logedUserData.bookingQuantity}}</div>
+            </div>
         </div>
-
-        <div>
-            <div>Email:</div>
-            <div>{{logedUserData.email}}</div>
-        </div>
-
-        <div>პაროლის შეცვლა</div>
-
-        <div>
-            <div>ჩემი ჯავშანი</div>
-            <div>{{logedUserData.bookingQuantity}}</div>
-        </div>
+        
 
     </div>
     

@@ -1,6 +1,6 @@
 .wrap{
     display: flex;
-    gap: 97px;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--lighter-dark-blue);
     padding: 35px var(--main-x-padding);
@@ -15,7 +15,7 @@
 
 .phone{
     display: flex;
-    font-size: var(--text-h4);
+    font-size: var(--text-h5);
     justify-content: center;
     align-items: center;
     gap: 20px;
@@ -23,7 +23,7 @@
 
 .addres{
     display: flex;
-    font-size: var(--text-h4);
+    font-size: var(--text-h5);
     justify-content: center;
     align-items: center;
     gap: 20px;
@@ -32,10 +32,11 @@
 .icon{
     border-radius: 50%;
     background-color: white;
-    padding: 11px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 40px ;
+    height: 40px;
 }
 
 .search{
@@ -71,49 +72,69 @@
     width: 480px;
     height: 50px;
     background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
 }
 
 
-.activeSearch{
+.dropDown{
     position: absolute;
-    background-color: red;
-    top: 30px;
+    box-shadow: var(--base-box-shadow);
+    border-radius: var(--base-border-radius);
+    background-color: white;
+    gap: 20px;
+    top: 80px;
     width: 100%;
     display: flex;
     flex-direction: column;
     max-height: 400px;
+    padding: 20px;
+    overflow-y: auto;
 
 }
 
 .doctor{
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
+    background-color: var(--lighter-light-blue);
+    border-radius: var(--base-border-radius);
+    padding: 20px;
+    gap: 50px;
 }
 
-.activeCategorySearch{
-    position: absolute;
-    background-color: red;
-    top: 30px;
-    width: 100%;
+.doctor .mini-info-wrap{
     display: flex;
     flex-direction: column;
-    max-height: 400px;
-    gap: 20px;
-    overflow-y: auto;
+    gap: 10px;
+}
+
+
+.category{
+    cursor: pointer;
 }
 
 img{
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
 }
 
 .searchButton{
     background-color: var(--dark-blue);
     border-radius: 50%;
-    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    width: 50px;
+    height: 50px;
 }
 
 
+input::placeholder{
+    color: rgb(5, 51, 84, 0.3);
+}

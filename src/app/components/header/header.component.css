@@ -1,11 +1,11 @@
 header{
-    display: flex;
-  
+    display: flex; 
     justify-content: space-between;
     align-items: center;
     padding: 0 var(--main-x-padding);
     margin-top: 17px;
     margin-bottom: 27px;
+    position: relative;
 }
 
 .logo-wrap{
@@ -24,6 +24,7 @@ header{
     font-weight: 500;
     position: relative;
     right: 20px;
+    font-family: var( --bold-text);
 
 }
 
@@ -36,6 +37,12 @@ ul{
 
 ul>li{
     cursor: pointer;
+}
+
+
+.auth-profile-wrap{
+    display: flex;
+    gap: 20px;
 }
 
 .auth{
@@ -69,6 +76,25 @@ ul>li{
 .profile{
     display: flex ;
     gap: 10px;
-    justify-content: center;
+    padding: 5px;
+    gap: 20px;
     align-items: center;
+    background-color: var(--lighter-light-blue);
+    width: 210px;
+    height: 45px;
+    border-radius: var(--big-border-radius);
+  
+    
+}
+
+.profile .name{
+    font-size: var(--text-h5);
+    color: var(--light-blue);
+}
+
+.profile img{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
 }

@@ -7,9 +7,10 @@ import { DoctorSpecializationsService } from '../../../services/doctor-specializ
 
 
 @Component({
-  selector: 'app-doctor-registr-page',
-  templateUrl: './doctor-registr-page.component.html',
-  styleUrls: ['./doctor-registr-page.component.css']
+    selector: 'app-doctor-registr-page',
+    templateUrl: './doctor-registr-page.component.html',
+    styleUrls: ['./doctor-registr-page.component.css'],
+    standalone: false
 })
 export class DoctorRegistrPageComponent implements OnInit {
   
@@ -17,6 +18,9 @@ export class DoctorRegistrPageComponent implements OnInit {
   selecteFile: File | null = null;
   selectePhoto: File | null = null;
   registrationError: string | null = null;
+
+  isFileSelected: boolean = false;
+  isPhotoSelected: boolean = false;
 
   formControl = this.fb.group({
     firstName: ["", [Validators.required, Validators.minLength(5)]],
@@ -46,7 +50,7 @@ export class DoctorRegistrPageComponent implements OnInit {
     this.doctor.email = this.formControl.value.email;
     this.doctor.password = this.formControl.value.password;
     this.doctor.personalNumber = this.formControl.value.personalNumber;
-    this.doctor.specializationId = this.formControl.value.specializationId;
+    this.doctor.specializationId = Number(this.formControl.value.specializationId);
     
     if (this.selecteFile) {
       this.doctor.cv = this.selecteFile;
@@ -74,6 +78,7 @@ export class DoctorRegistrPageComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.selecteFile = file;
+      this.isFileSelected = true;
     }
   }
 
@@ -81,6 +86,7 @@ export class DoctorRegistrPageComponent implements OnInit {
     const photo = event.target.files[0];
     if (photo) {
       this.selectePhoto = photo;
+      this.isPhotoSelected = true;
     }
   }
 }

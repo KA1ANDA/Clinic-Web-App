@@ -7,9 +7,10 @@ import { RegistrationService } from '../../../services/registration.service';
 
 
 @Component({
-  selector: 'app-user-registr-page',
-  templateUrl: './user-registr-page.component.html',
-  styleUrls: ['./user-registr-page.component.css']
+    selector: 'app-user-registr-page',
+    templateUrl: './user-registr-page.component.html',
+    styleUrls: ['./user-registr-page.component.css'],
+    standalone: false
 })
 export class UserRegistrPageComponent implements OnInit {
 

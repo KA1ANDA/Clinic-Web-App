@@ -21,6 +21,7 @@
     position: relative;
     right: 20px;
     color: white;
+    font-family: var(--bold-text);
 }
 
 
@@ -41,6 +42,7 @@
     color: white;
     font-size: var(--text-h5);
     font-weight: 500;
+    font-family: var( --bold-text);
 }
 
 .navigation-body{

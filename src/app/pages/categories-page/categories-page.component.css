@@ -1,8 +1,88 @@
+.wrap{
+    padding: 0 var(--main-x-padding);
+    margin-top: 60px;
+    margin-bottom: 280px;
+    display: flex;
+    flex-direction: column;
+    gap:43px;
+
+}
+
 table{
     width: 100%;
+    border-collapse: collapse;
+    border-radius: var(--base-border-radius);
+    box-shadow: var(--base-box-shadow);
+    overflow: hidden;
+    height: 570px;
 }
+
+table thead {
+    background-color: var(--lighter-light-blue);
+    height: 50px;
+    border-bottom:none;
+}
+
+table thead th:nth-child(1),
+table tbody td:nth-child(1){
+    padding-left: 34px ;
+}
+
+table thead th:nth-child(1),
+table thead th:nth-child(2) {
+    text-align: start;
+}
+
+table tbody tr td:not(:nth-child(1)):not(:nth-child(2)) {
+    text-align: center;
+}
+
+table td {
+    border-bottom: 1px solid rgb(236, 242, 248); 
+    padding: 10px 0 ;
+}
+
+table tr:last-child td {
+    border-bottom: none; /* Removes border from the last row */
+}
+
+.title{
+    font-size: var(--text-h2);
+    font-family: var(--bold-text);
+    color:var(--light-blue);
+}
+
 img{
     border-radius: 50%;
     width: 50px;
     height: 50px;
+    object-fit: cover;
+}
+
+.edit {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.edit-btn{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-green);
+    cursor: pointer;
+}
+
+.delete-btn{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--light-red);
 }

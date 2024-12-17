@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Doctor } from '../models/doctor.model';
 import { Specialization } from '../models/specialization.model';
+import { DayOff } from '../models/dayOff.model';
 
 
 @Injectable({
@@ -11,8 +12,12 @@ import { Specialization } from '../models/specialization.model';
 export class DoctorsService {
 
   doctors : Doctor[] = []
+
+  visibleDoctors : Doctor[] = []
   searchedDoctors : Doctor[] = []
   selectedDoctor? : Doctor 
+  doctorDaysOff : DayOff[] = []
+
 
   baseUrl:string = "https://localhost:7091/api/"
 
@@ -36,6 +41,15 @@ export class DoctorsService {
   getSearchedDoctors(searchString : string):Observable<any>{
     const search = { searchString };
     return this.http.post<any>(`${this.baseUrl}Doctors/search_doctor`, search)
+  }
+
+  addDayOff(day:DayOff):Observable<any>{
+    return this.http.post<any>(`${this.baseUrl}Doctors/add_day_off`,day)
+  }
+
+  getDoctorDaysOff(id : number):Observable<any>{
+    const day = new DayOff(undefined, id); 
+    return this.http.post<any>(`${this.baseUrl}Doctors/get_doctor_days_off` , day)
   }
 
   
@@ -66,5 +80,25 @@ export class DoctorsService {
 
   set SelectedDoctor (selectedDoctor : Doctor ) {
     this.selectedDoctor = selectedDoctor
+  }
+
+
+  get DoctorDaysOff () : DayOff[]  {
+    return this.doctorDaysOff
+  } 
+
+
+  set DoctorDaysOff (day : DayOff[] ) {
+    this.doctorDaysOff = day
+  }
+
+
+  get VisibleDoctors () : Doctor[]  {
+    return this.visibleDoctors
+  } 
+
+
+  set VisibleDoctors (visibleDoctors : Doctor[] ) {
+    this.visibleDoctors = visibleDoctors
   }
 }

@@ -10,6 +10,8 @@
 
     --dark-red : rgb(255, 44, 82);
     --light-red:rgb(255, 147, 166);
+    --lighter-red:rgb(255, 241, 244);
+
 
     --dark-green:rgb(58, 207, 153);
     --light-green:rgb(218, 250, 238);
@@ -24,9 +26,11 @@
     --text-h4:18px;
     --text-h5:16px;
     --text-h6:14px;
+    --text-h7:12px;
 
 
 
+    --small-border-radius : 5px;
     --base-border-radius : 10px;
     --big-border-radius : 50px;
 
@@ -34,6 +38,8 @@
 
     --base-box-shadow:0px 4px 30px 0px rgba(5, 51, 84, 0.05);
 
+
+    --bold-text :firago-bold;
 }
 
 *,
@@ -42,9 +48,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Ensures padding and border are included in element's total width/height */
-    color: var(--base-black) 
+    color: var(--base-black) ;
+    font-family: firago;
+    
+    
 }
 
 body{
     height: 100%;
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family:firago;
+    src: url(assets/fonts/FiraGO-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family:firago-bold;
+    src: url(assets/fonts/FiraGO-Medium.ttf) format('truetype');
 }

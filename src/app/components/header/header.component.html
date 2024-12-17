@@ -15,19 +15,27 @@
         </ul>
     </div>
 
-    @if(!this.auth.IsLogedIn){
-        <div class="auth">
-            <div routerLink="/login" routerLinkActive="activeAuth" >ავტორიზაცია</div>  
-            /
-            <div routerLink="/registration" routerLinkActive="activeAuth" >რეგისტრაცია</div>
-        </div>
-    }@else {
-        <div [routerLink]="['/profile' , logedUserId]" class="profile">
-            <img [src]="byteConvert + logedUserData.photo" />
-            <div>{{logedUserData.lastName}}</div>
-        </div>
+    <div class="auth-profile-wrap">
+        @if(!this.auth.IsLogedIn){
+            <div class="auth">
+                <div (click)="toggleAuthorization()" [ngClass]="{ 'activeAuth': this.auth.authorization}" >ავტორიზაცია</div>  
+                /
+                <div routerLink="/registration" routerLinkActive="activeAuth" >რეგისტრაცია</div>
+            </div>
+        }@else {
+            <div [routerLink]="this.auth.logedUserData.role === 0 ? ['/adminPage/doctors'] : ['/profile', logedUserId]" class="profile">
+                <img  [src]="logedUserData.photo ? (byteConvert + logedUserData.photo) : defaultPhoto" />
+                <div class="name">{{logedUserData.lastName}}</div>
+            </div>
+        }
+        
+        <div class="language">ENG</div>
+    </div>
+
+
+    @if (this.auth.authorization) {
+        <app-login-page (onToggle) = "toggleAuthorization()"></app-login-page>
     }
     
-    <div class="language">ENG</div>
     <!-- <div (click)="logOut()">Log Out</div> -->
 </header>

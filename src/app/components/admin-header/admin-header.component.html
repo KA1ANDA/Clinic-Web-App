@@ -1,0 +1,15 @@
+<div class="wrap">
+    <div class="first-nav">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#18a4e1" fill-rule="evenodd" d="M3 12a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1m0-4a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1m0 8a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1" clip-rule="evenodd"/></svg>        </div>
+        <div routerLink="/doctorRegistration">რეგისტრაცია</div>
+        <div routerLink="/categories">კატეგორიები</div>
+        <div [ngClass]="{'active':doctorsList}">ექიმები</div>
+    </div>
+
+    <div class="second-nav">
+        <div class="nav-wrap">ექიმი</div>
+        <div class="nav-wrap">მომხმარებელი</div>
+        <div class="nav-wrap">ადმინისტრატორი</div>
+    </div>
+</div>

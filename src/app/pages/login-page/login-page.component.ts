@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Authentication } from '../../models/authentication.model';
@@ -6,11 +6,14 @@ import { catchError, of } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+    selector: 'app-login-page',
+    templateUrl: './login-page.component.html',
+    styleUrl: './login-page.component.css',
+    standalone: false
 })
 export class LoginPageComponent {
+
+  @Output() onToggle = new EventEmitter(); 
 
   constructor(private auth : AuthenticationService  , private fb:FormBuilder , private router: Router){}
 
@@ -28,6 +31,10 @@ export class LoginPageComponent {
   })
 
   
+
+  toggleClose():void{
+    this.onToggle.emit()
+  }
 
   authenticate() : void{
     this.authObj.email = this.formControl.value.email

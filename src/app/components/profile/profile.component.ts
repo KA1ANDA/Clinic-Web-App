@@ -3,12 +3,14 @@ import { User } from '../../models/user.model';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrl: './profile.component.css',
+    standalone: false
 })
 export class ProfileComponent implements OnInit {
 
+  defaultPhoto: string = 'assets/images/default.png';
   byteConvert : string = 'data:image/jpeg;base64,'
 
   logedUserData : User = new User()

@@ -7,7 +7,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 import { UserRegistrPageComponent } from './pages/registration-pages/user-registr-page/user-registr-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 import { DoctorsComponent } from './components/doctors/doctors.component';
@@ -23,9 +23,11 @@ import { SearchComponent } from './components/search/search.component';
 import { CategoriesPageComponent } from './pages/categories-page/categories-page.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { DoctorRegistrPageComponent } from './pages/registration-pages/doctor-registr-page/doctor-registr-page.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
 
 
 
@@ -47,12 +49,16 @@ import { FooterComponent } from './components/footer/footer.component';
         AdminPageComponent,
         DoctorRegistrPageComponent,
         FooterComponent,
+        AdminHeaderComponent,
+        UserEditComponent,
+        ActionButtonsComponent,
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        FontAwesomeModule], providers: [
+        DragDropModule,
+        ], providers: [
         provideClientHydration(),
         provideHttpClient(withFetch()),
         [{ provide: HTTP_INTERCEPTORS, useClass: MainInterceptor, multi: true }],

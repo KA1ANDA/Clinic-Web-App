@@ -13,7 +13,7 @@ export class Doctor extends User{
     photo?: File | null,
     bookingQuantity?: number,    
     role? : number | null,
-    public specializationId ? : string | null ,
+    public specializationId ? : number  ,
     public rating? : number | null,
     public cv? : File | null ,
     public experience? : ExperienceEntry[] 

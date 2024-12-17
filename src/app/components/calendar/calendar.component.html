@@ -1,98 +1,179 @@
 <div>
-    <div>
-        <div>წელი:{{currentYear}}</div>
-        <div>
-            <div (click)="getPrevMonth()">prev</div>
-            თვე:{{currentMonth}}
-            <div (click)="getNextMonth()">next</div>
+    <div class="year-month-wrap">
+        <div class="year">{{currentYear}}</div>
+        <div class="month-wrap">
+            <div class="month-nav month-nav-prev" (click)="getPrevMonth()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24"><rect width="12" height="24" fill="none"/><defs><path id="weuiArrowOutlined0" fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"/></defs><use fill-rule="evenodd" href="#weuiArrowOutlined0" transform="rotate(-180 5.02 9.505)"/></svg>
+            </div>
+            <div class="month">{{currentMonth}}</div>
+            <div class="month-nav" (click)="getNextMonth()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24"><rect width="12" height="24" fill="none"/><defs><path id="weuiArrowOutlined0" fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"/></defs><use fill-rule="evenodd" href="#weuiArrowOutlined0" transform="rotate(-180 5.02 9.505)"/></svg>
+            </div>
         </div>
     </div>
-    
-    
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    <div (click)="getPrevWeek()">prev</div>
-                  
-                    <div (click)="getNextWeek()">next</div>
-                </th>
-                @for (day of getCurrentWeek(); track $index) {
-                    <th>{{day.day}} ,{{day.weekday}} </th>
-                }
-           
-            </tr>
-        </thead>
-        <tbody>
-            @for (time of this.booking.TimeSlots; track time.id) {
+
+    <div   [ngClass]="mode == 'booking' ? 'wrap-flex' : 'wrap'">
+   
+        
+        <table>
+            <thead>
                 <tr>
-                    <td>{{extractTimeFromSlot(time.startTime)}} - {{extractTimeFromSlot(time.endTime)}}</td>
+                    <th>
+                        <div class="nav-arrows">
+                            <div class="week-nav week-nav-prev"  (click)="getPrevWeek()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24"><rect width="12" height="24" fill="none"/><defs><path id="weuiArrowOutlined0" fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"/></defs><use fill-rule="evenodd" href="#weuiArrowOutlined0" transform="rotate(-180 5.02 9.505)"/></svg>
+                            </div>
+                          
+                            <div class="week-nav"  (click)="getNextWeek()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24"><rect width="12" height="24" fill="none"/><defs><path id="weuiArrowOutlined0" fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"/></defs><use fill-rule="evenodd" href="#weuiArrowOutlined0" transform="rotate(-180 5.02 9.505)"/></svg>
+                            </div>
+                        </div>    
+                    </th>
                     @for (day of getCurrentWeek(); track $index) {
-                        <td [class.weekend]="day.weekday === 'Sunday' || 
-                            day.weekday === 'Saturday' "  
-                            [class.booked]="isBooked(time.id, day).isBooked" >
-                    
-                            @if (isBooked(time.id, day).isBooked && isBooked(time.id, day).patientId) {
-                                <div [ngClass] ="'green'">
-                                    <div>ჩემი ჯავშანი</div>
-                                    @if (isDeleteActive ) {
-                                        <div (click)="deleteBooking(isBooked(time.id, day).bookingId)">წაშლა</div>
-                                    }@else if (isEditActive) {
-                                        <div (click)="toggleActiveBookingCell(time.id, day)" >ედითი</div>
-                                        @if (activeBookingCell.timeId === time.id && isSameDay(activeBookingCell.day, day)) {
-                                            <app-booking-popup
-       
-                                            [timeId]="time.id"
-                                            [day]="day"
-                                            [description]="description"
-                                            [bookingId]="isBooked(time.id, day).bookingId"
-                                            (descriptionUpdated)="editBookingDescription($event.bookingId, $event.description)">
-                                        </app-booking-popup>
-                                        }
-                                        
-                                    }   
-                                </div>
-                            }@else if (isBooked(time.id, day).isBooked && !isBooked(time.id, day).patientId) {
-                                @if (this.auth.LogedUserData.role === 2) {
-                                    <div [ngClass] ="'green'">
-                                         <div>დაჯავშნილი</div>
-                                         @if (isDeleteActive ) {
-                                            <div (click)="deleteBooking(isBooked(time.id, day).bookingId)">წაშლა</div>
-                                         }
-                                        </div>
-                                }@else{
-                                    <div [ngClass] ="'red'"> დაჯავშნილი</div>
-                                }                            
-                            }@else {
-                                <div class="booking">
-                                    @if(mode === 'booking'){
-                                        <div (click)="toggleActiveBookingCell(time.id, day)">+ ჯავშანი</div>}
-                                    <!-- }@else if (mode === 'profile') {
-                                        
-                                    } -->
-                                    
-                                    @if (activeBookingCell.timeId === time.id && isSameDay(activeBookingCell.day, day)) {
-                                
-                                        <app-booking-popup
-                                            [timeId]="time.id"
-                                            [day]="day"
-                                            [description]="description"
-                                            (bookingConfirmed)="setBooking($event.timeId, $event.day)">
-                                        </app-booking-popup>
-                                    }
-                                    
+                        <th>
+                            <div class="week-day">
+                                <div class="day">{{day.day}}</div>
+                                <div>{{day.weekday}}</div>
+                            </div>
+                             
+                            @if ((this.auth.LogedUserData.role === 2 ||  this.auth.LogedUserData.role === 0 ) && isEditActive) {
+                                <div class="day-off-set-button" (click)="setDayOff(day)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><g fill="none" stroke="#18a4e1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="20" stroke-dashoffset="20" d="M12 3l0 17.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="20;0"/></path><path stroke-dasharray="12" stroke-dashoffset="12" d="M12 21l7 -7M12 21l-7 -7"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.2s" values="12;0"/></path></g></svg>
                                 </div>
                             }
-                        </td>
+                        </th>
                     }
+               
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @for (time of this.booking.TimeSlots; track time.id) {
+                    <tr>
+                        <td>{{extractTimeFromSlot(time.startTime)}} - {{extractTimeFromSlot(time.endTime)}}</td>
+                        @for (day of getCurrentWeek(); track $index) {
+                            <td [ngClass]="{
+                                weekend: day.weekday === 'Saturday' || day.weekday === 'Sunday',
+                                'day-off': isDayOff(day)
+                              }"                                         
+                                [class.booked]="isBooked(time.id, day).isBooked" 
+                                
+                                >
+                        
+                                @if (isBooked(time.id, day).isBooked && isBooked(time.id, day).patientId) {
+                                    
+                                    <div [ngClass] ="'green'">
+                                        <div class="title">ჩემი ჯავშანი</div>
+                                        @if (isDeleteActive ) {
+                                            <div class="delete" (click)="deleteBooking(isBooked(time.id, day).bookingId ,isBooked(time.id, day).patient , isBooked(time.id, day).doctor)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#ff0202" d="M16.066 8.995a.75.75 0 1 0-1.06-1.061L12 10.939L8.995 7.934a.75.75 0 1 0-1.06 1.06L10.938 12l-3.005 3.005a.75.75 0 0 0 1.06 1.06L12 13.06l3.005 3.006a.75.75 0 0 0 1.06-1.06L13.062 12z"/></svg>
+                                            </div>
+                                        }@else if (isEditActive) {
+                                            <div class="edit" (click)="toggleActiveBookingCell(time.id, day)" >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#18a4e1" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75z"/></svg>                                        </div>
+                                                <div class="bookingPopup">
+                                                    @if (activeBookingCell.timeId === time.id && isSameDay(activeBookingCell.day, day)) {
+                                                        <app-booking-popup
+                   
+                                                        [timeId]="time.id"
+                                                        [day]="day"
+                                                        [description]="description"
+                                                        [bookingId]="isBooked(time.id, day).bookingId"
+                                                        (descriptionUpdated)="editBookingDescription($event.bookingId, $event.description)">
+                                                        </app-booking-popup>
+                                                    }
+                                                </div>
+                                            
+                                            
+                                        }   
+                                    </div>
+                                }@else if (isBooked(time.id, day).isBooked && !isBooked(time.id, day).patientId) {
+                                    @if (this.auth.LogedUserData.role === 2 || this.auth.LogedUserData.role === 0 ) {
+                                        <div [ngClass] ="'green'">
+                                             <div class="for-doctor-title" (click)="toggleActiveBookingCell(time.id, day)">დაჯავშნილია</div>
+                                             <div class="bookingPopup">
+                                                @if (activeBookingCell.timeId === time.id && isSameDay(activeBookingCell.day, day)) {
+                                               
+                                                    <app-booking-popup
+                                                        [timeId]="time.id"
+                                                        [day]="day"
+                                                        [description]="description"
+                                                        [role]="this.auth.LogedUserData.role"
+                                                       >
+                                                    </app-booking-popup>
+                                                }
+                                             </div>
+                                             
+                                            
+                                             @if (isDeleteActive ) {
+                                                <div class="delete" (click)="deleteBooking(isBooked(time.id, day).bookingId ,isBooked(time.id, day).patient , isBooked(time.id, day).doctor)">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#ff0202" d="M16.066 8.995a.75.75 0 1 0-1.06-1.061L12 10.939L8.995 7.934a.75.75 0 1 0-1.06 1.06L10.938 12l-3.005 3.005a.75.75 0 0 0 1.06 1.06L12 13.06l3.005 3.006a.75.75 0 0 0 1.06-1.06L13.062 12z"/></svg>
+    
+                                                </div>
+                                             }@else if (isEditActive) {
+                                                <div class="edit" (click)="toggleEmptyBookingSlots(isBooked(time.id, day).bookingId)">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><g fill="none"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="#18a4e1" d="M8.464 6.707a1 1 0 0 1 0-1.414l2.758-2.758a1.1 1.1 0 0 1 1.556 0l2.757 2.758a1 1 0 1 1-1.414 1.414L13 5.586V11h5.414l-1.121-1.121a1 1 0 0 1 1.414-1.415l2.758 2.758a1.1 1.1 0 0 1 0 1.556l-2.758 2.758a1 1 0 0 1-1.414-1.415L18.414 13H13v5.414l1.121-1.121a1 1 0 0 1 1.414 1.414l-2.757 2.758a1.1 1.1 0 0 1-1.556 0l-2.758-2.758a1 1 0 1 1 1.415-1.414l1.12 1.121V13H5.587l1.121 1.121a1 1 0 1 1-1.414 1.415l-2.758-2.758a1.1 1.1 0 0 1 0-1.556l2.758-2.758A1 1 0 0 1 6.707 9.88L5.586 11H11V5.587l-1.121 1.12a1 1 0 0 1-1.415 0"/></g></svg>
+                                                </div>
+                                            }
+                                            </div>
+                                    }@else{
+                                        <div [ngClass] ="'red'"> </div>
+                                    }                            
+                                }@else {
+                                    <div class="booking">
+                                        @if (!isBooked(time.id, day).isBooked && 
+                                            !isDayOff(day) &&
+                                            (day.weekday !== 'Saturday' && day.weekday !== 'Sunday')&&
+                                            emptyBookingSlots &&  
+                                            (this.auth.LogedUserData.role === 2 || this.auth.LogedUserData.role === 0 )) {
+                                            <div class="re-book" (click)="updateBookingDate(time.id , day)">გადაჯავშნა</div>
+                                        }
+                                       
+                                        @if(mode === 'booking' &&  this.auth.LogedUserData.role != 0  &&  !isDayOff(day) && (day.weekday !== 'Saturday' && day.weekday !== 'Sunday') ){
+                                            <div (click)="toggleActiveBookingCell(time.id, day)"> <span class="plus-icon">+</span> დაჯავშნა</div>}
+                                        <!-- }@else if (mode === 'profile') {
+                                            
+                                        } -->
+                                        
+                                        <div class="bookingPopup">
+                                            @if (activeBookingCell.timeId === time.id && isSameDay(activeBookingCell.day, day)) {
+                                    
+                                                <app-booking-popup
+                                                    [timeId]="time.id"
+                                                    [day]="day"
+                                                    [description]="description"
+                                                    (bookingConfirmed)="setBooking($event.timeId, $event.day , $event.description)">
+                                                </app-booking-popup>
+                                            }
+                                        </div>
+                                       
+                                        
+                                    </div>
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-    <div>
-        <div (click)="toggleEdit()">რედაქტირება</div>
-        <div (click)="toggleDelete()">წაშლა</div>
+
+       @if (this.auth.LogedUserData.role != 0) {
+        <app-action-buttons
+        [mode]="mode"
+        (editClicked)="toggleEdit()" 
+        (deleteClicked)="toggleDelete()">
+      ></app-action-buttons>
+       }
+         
+       
+
+
     </div>
+    
+    
+    
+   
+    
+   
    
 </div>

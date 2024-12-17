@@ -2,11 +2,22 @@
   <div class="title">კატეგორიები</div>
   <div class="categories">
     @for (category of categories; track category.id) {
-      <div class="category" (click)="getDoctorsByCategoryId(category.id)">
-        <div class="quantity">( {{category.quantity}} )</div>
-        <div>{{category.specializationName}}</div>    
+      <div [ngClass]="{'active': activeCategory === category.id}"  class="category" (click)="getDoctorsByCategoryId(category.id)">
+        <div class="spec">
+          <div class="quantity">( {{category.quantity}} )</div>
+          <div>{{category.specializationName}}</div>
+        </div>
+        
+        @if (activeCategory === category.id) {
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#18a4e1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m10 17l5-5l-5-5"/></svg>
+        }
       </div>
     }
+  </div>
+
+  <div class="show-more">
+    <div>სრულად ნახვა</div>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="#18a4e1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m7 10l5 5l5-5"/></svg>
   </div>
     
 </div>

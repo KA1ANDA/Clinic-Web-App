@@ -1,15 +1,100 @@
+.wrap{
+    width: 1530px;
+    height: 330px;
+    margin: 60px 150px 125px 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
 form{
-    background-color:antiquewhite;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    }
+    grid-template-columns: repeat(3 , 1fr);
+    gap: 40px;
+}
+
+.title{
+    color: var(--light-blue);
+    font-family: firago-bold;
+    font-size: var(--text-h2);
+
+}
+
+input {
+    border-radius: var(--big-border-radius);
+    padding: 17px 20px;
+    width: 480px; /* Might need to be adjusted if padding affects layout */
+    height: 50px;
+    box-sizing: border-box;
+    border: 1px solid var(--lighter-dark-blue);
+    margin-top: 5px;
+}
+
+input:focus {
+    border: 1px solid var(--light-blue);
+    outline: none; /* Optional: Removes the default focus outline */
+}
+
+input::placeholder{
+    color: rgb(5, 51, 84, 0.3);
+}
 
 
-    form>div{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
 
- 
+
+label{
+    font-size: var(--text-h5);
+    margin-left:20px;
+
+}
+
+.email-wrap{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.send-email-button{
+    all: unset;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
+
+.activation-code-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activation-code-title > p {
+    margin-right: 20px;
+    color: rgba(5, 51, 84, 0.3);
+}
+
+
+
+.registration-button{
+    background-color: var(--dark-blue);
+    border-radius: var(--big-border-radius);
+    width: 180px;
+    height: 50px;
+    color: white;
+    font-size: var(--text-h5);
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.registration-button-wrap{
+    position: relative;
+}
+
+
+.input-error{
+    color: var(--dark-red);
+    font-size: var(--text-h6);
+    margin-left: 20px;
+    margin-top: 10px;
+    position: absolute;
+}

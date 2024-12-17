@@ -30,7 +30,7 @@ export class RegistrationService {
     formData.append('email', doctor.email ?? '');
     formData.append('password', doctor.password ?? '');
     formData.append('personalNumber', doctor.personalNumber ?? '');
-    formData.append('specializationId', doctor.specializationId ?? ''); 
+    formData.append('specializationId', doctor.specializationId?.toString() ?? '');
 
     formData.append('activationCode',  '');
     if(doctor.cv){
